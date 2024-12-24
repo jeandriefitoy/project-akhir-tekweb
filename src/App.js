@@ -1,24 +1,26 @@
-import "./App.css";
-// import "./index.css";
+// import "./styles/tailwind.css";
+// // import "./index.css";
+
+// function App() {
+//     return (
+//         <div className="App">
+//             <header className="App-header">
+//                 <p className="bg-blue-500 text-white text-center p-4 rounded-lg">
+//                     Starter Project Akhir Tekweb
+//                 </p>
+//                 <a className="bg-amber-600">IG: @je_zuice</a>
+//             </header>
+//         </div>
+//     );
+// }
+
+// export default App;
+
+import React from "react";
+import Login from "./pages/Login";
 
 function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <p className="bg-blue-500 text-white text-center p-4 rounded-lg">
-                    Starter Project Akhir Tekweb
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
+    return <Login />;
 }
 
 export default App;
