@@ -1,41 +1,32 @@
 import React, { useState, useEffect } from "react";
 import PenghuniForm from "../components/PenghuniForm";
-import PenghuniTable from "../components/PenghuniTabel";
-import { collection, onSnapshot } from "firebase/firestore";
+import PenghuniTabel from "../components/PenghuniTabel";
 import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-const Penghunii = () => {
+const Penghuni = () => {
     const [penghunii, setPenghunii] = useState([]);
-    const [selectedPenghuni, setSelectedPenghuni] = useState(null);
+
+    const fetchPenghunii = async () => {
+        const querySnapshot = await getDocs(collection(db, "penghuni"));
+        const data = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setPenghunii(data);
+    };
 
     useEffect(() => {
-        const unsubscribe = onSnapshot(
-            collection(db, "penghunii"),
-            (snapshot) => {
-                const penghuniData = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setPenghunii(penghuniData);
-            }
-        );
-
-        return unsubscribe; // Cleanup listener
+        fetchPenghunii();
     }, []);
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Manajemen Penghuni</h1>
-            <PenghuniForm
-                selectedPenghuni={selectedPenghuni}
-                setSelectedPenghuni={setSelectedPenghuni}
-            />
-            <PenghuniTable
-                penghunii={penghunii}
-                setSelectedPenghuni={setSelectedPenghuni}
-            />
+        <div className="p-4">
+            <h1 className="text-3xl font-bold mb-6">Manajemen Penghuni</h1>
+            <PenghuniForm setPenghunii={setPenghunii} />
+            <PenghuniTabel penghunii={penghunii} setPenghunii={setPenghunii} />
         </div>
     );
 };
 
-export default Penghunii;
+export default Penghuni;

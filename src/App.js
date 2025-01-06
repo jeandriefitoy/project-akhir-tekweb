@@ -18,6 +18,7 @@ import Layout2 from "./components/Layout2";
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true); // Tambahkan state loading
+    // const [sidebarToggle, setSidebarToggle] = useState(false);
 
     useEffect(() => {
         // Cek status autentikasi dari localStorage

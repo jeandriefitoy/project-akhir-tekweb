@@ -8,9 +8,13 @@ import {
     FaTable,
 } from "react-icons/fa6";
 
-const Sidebar = () => {
+const Sidebar = ({ sidebarToggle }) => {
     return (
-        <div className="w-64 bg-orange-500 fixed rounded-br-xl h-full px-4 py-2">
+        <div
+            className={`fixed top-0 left-0 h-full bg-orange-500 rounded rounded-br-full border-r-2 border-b-2 border-black transition-transform duration-300 ${
+                sidebarToggle ? "-translate-x-full" : "translate-x-0"
+            } w-64`}
+        >
             <div className="my-2 mb-4">
                 <h1 className="text-2xl text-white text-center font-bold">
                     Kost Merkids
